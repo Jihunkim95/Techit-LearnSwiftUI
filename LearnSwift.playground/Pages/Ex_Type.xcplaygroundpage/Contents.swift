@@ -75,3 +75,167 @@ let pStr2: String! = "hahaha"
 let oStr: String = pStr!
 let oStr2: String = pStr2
 print(oStr, oStr2)
+
+// guard p.62
+enum DataError : Error{
+    case nilError
+}
+index = 0
+guard let i: Int = index else{
+    // return
+    // break
+    // continue
+    // throw
+    throw DataError.nilError
+}
+
+//타입 캐스팅
+// p.100 상속
+class TestA{
+    var name = ""
+    init(name: String = "") {
+        self.name = name
+    }
+}
+
+//상속
+class TestAA : TestA{
+    var age = 0
+    init(name:String, age: Int){
+        self.age = age
+        super.init(name: name)
+    }
+}
+
+//// guard  p.62
+//enum DataError : Error {
+//    case nilError
+//}
+//index = 0
+func multiplyByTen(value: Int?){
+    guard let number = value, number < 10 else{
+        print("Number is too high")
+        return
+    }
+    let result = number * 10
+    print(result)
+}
+multiplyByTen(value: 5)
+multiplyByTen(value: 10)
+
+// 타입 캐스팅
+// p.100 상속
+class Pet {
+    var name = ""
+    init(name: String) {
+        self.name = name
+    }
+}
+
+class Cat : Pet {
+    var age = 0
+    init(name: String, age: Int) {
+        self.age = age
+        super.init(name: name)
+    }
+}
+
+class Dog : Pet {
+    var speak = "멍"
+    init(name: String, speak: String) {
+        self.speak = speak
+        super.init(name: name)
+    }
+}
+
+let libary: [Pet] = [Cat(name: "냐옹이", age: 1), Dog(name: "돌이", speak: "스멍~")]
+// 타입 확인 is를 사용 p.42
+if libary[0] is Cat {
+    
+    print("is Cat")
+}
+
+// 다운캐스팅
+for pet in libary {
+    if let cat = pet as? Cat {
+        print(cat.name, cat.age)
+    }
+
+    if let dog = pet as? Dog {
+        print(dog.name, dog.speak)
+    }
+}
+
+// if 구문 추가 표현식
+print(x1)
+let result = if x1 == 0{
+    "x1 is 0"
+}else{
+    "x1 not 0"
+}
+print(result)
+
+//switch 구문
+let value = 4
+switch (value){
+case 0, 1, 2:
+    print("zero, one, two")
+    
+case 4:
+    print("three, four")
+default:
+    print("default")
+}
+
+
+// switch where 구문
+let temp = 54
+switch temp{
+case 0...49 where temp % 2 == 0:
+    print("Cold and even")
+case 50...79 where temp % 3 == 0:
+    print("Warm and even")
+
+default:
+    print("nothing")
+}
+
+// x값을 상수로한 매칭 switch
+let number = 5 // 홀수 또는 짝수를 판단하고자 하는 숫자
+
+switch number {
+case let x where x % 2 == 0:
+    print("\(number)는 짝수입니다.")
+case let x where x % 2 != 0:
+    print("\(number)는 홀수입니다.")
+default:
+    print("\(number)는 0입니다.")
+}
+// 튜플 매칭
+//let tu = (_,1)
+switch tu{
+case (0,0):
+    print("0, 0")
+case (_,0):
+    print("_, 0")
+case (0,_):
+    print("0, _")
+case (-1...1,-1...1):
+    print("-1...1,-1...1")
+default:
+    break
+}
+let tu = (2,0)
+// 튜플을 이용한 값 바인딩
+switch tu{
+case (let x ,0):
+    print(x,"0, 0")
+case (_,let y):
+    print(y,"_, 0")
+    
+case let (x,y):
+    print(x,y)
+default:
+    break
+}
+

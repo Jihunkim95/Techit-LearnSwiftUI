@@ -3,6 +3,7 @@
     <pages>
         <page name='Viewtest'/>
         <page name='Ex_Type'/>
+        <page name='Ex_Func'/>
         <page name='Untitled Page'/>
     </pages>
 </playground>
